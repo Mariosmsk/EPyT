@@ -24,8 +24,10 @@ matrix:
     - PYTHON: "C:\\Pytho310-x64"
       platform: x86
 install:
-      "%PYTHON%\\python.exe" -m pip install --upgrade pip
-      "%PYTHON%\\python.exe" -m pip install -r requirements.txt
+  - "%PYTHON%\\python.exe -m pip install --upgrade pip"
+  - "%PYTHON%\\python.exe -m pip install -r requirements.txt"  
+
+build: false
 
 test_script:
   - "%PYTHON%/Scripts/pytest"
