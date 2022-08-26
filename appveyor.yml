@@ -1,6 +1,7 @@
 # AppVeyor is Continuous Integration service for Windows developers to securely build and test code
 
-image: Visual Studio 2019
+image:
+  - Visual Studio 2019
 
 platform:
   - x86
@@ -8,21 +9,19 @@ platform:
 
 environment:
   matrix:
+    # For Python versions available on Appveyor, see
+    # https://www.appveyor.com/docs/windows-images-software/#python
+    - PYTHON: "C:\\Python36-x64"
     - PYTHON: "C:\\Python37-x64"
     - PYTHON: "C:\\Python38-x64"
     - PYTHON: "C:\\Python39-x64"
     - PYTHON: "C:\\Python310-x64"
+    - PYTHON: "C:\\Python36"
+    - PYTHON: "C:\\Python37"
+    - PYTHON: "C:\\Python38"
+    - PYTHON: "C:\\Python39"
+    - PYTHON: "C:\\Python310"
 
-matrix:
-  exclude:
-    - PYTHON: "C:\\Python37-x64"
-      platform: x86
-    - PYTHON: "C:\\Python38-x64"
-      platform: x86
-    - PYTHON: "C:\\Python39-x64"
-      platform: x86
-    - PYTHON: "C:\\Pytho310-x64"
-      platform: x86
 install:
   - "%PYTHON%\\python.exe -m pip install --upgrade pip"
   - "%PYTHON%\\python.exe -m pip install -r requirements.txt"  
@@ -31,4 +30,4 @@ install:
 build: false
 
 test_script:
-  - "%PYTHON%/Scripts/pytest epyt"
+  - "%PYTHON%/Scripts/pytest epyt -k \"test\""
