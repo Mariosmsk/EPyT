@@ -24,4 +24,4 @@ install:
 build: false
 
 test_script:
-  - "%PYTHON%/Scripts/pytest epyt"
+  - "%PYTHON%\\Scripts\\pytest epyt"
